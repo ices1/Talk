@@ -1,26 +1,21 @@
-# Simple-BBS
+# vue-bbs
 
-### Install 
-```javascript
-    npm install --save
+> A Vue.js project
+
+## Build Setup
+
+``` bash
+# install dependencies
+npm install
+
+# serve with hot reload at localhost:8080
+npm run dev
+
+# build for production with minification
+npm run build
+
+# build for production and view the bundle analyzer report
+npm run build --report
 ```
 
-### Run
-```javascript
-    node app.js
-```
-### Uses
-- 后端： `node.js` 搭配 `Express`
-- 数据库： `SQL` 
-- 前端： `pug` 模板
-- 服务器环境： `Ubuntu 18.04 x86_64  (vps)`
-
-### Feature  
- - 正常登录，注册，发帖，回复等功能
- - 动态验证码登录
- - 邮件找回密码
-
-#### [在线访问地址](http://vps.iceeweb.com:3002/)
-
-#### [源码地址](http://vps.iceeweb.com:3002/)
-
+For a detailed explanation on how things work, check out the [guide](http://vuejs-templates.github.io/webpack/) and [docs for vue-loader](http://vuejs.github.io/vue-loader).
