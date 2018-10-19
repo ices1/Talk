@@ -1,12 +1,6 @@
 <template>
     <div>
-        <ul>
-          <li v-for="(item, index) of posts" :key="index">
-            <h3> {{item.title}} </h3>
-            <span> {{item.content}} </span>
-            <!-- <span> {{item.username}} </span> -->
-          </li>
-        </ul>
+        <div>Post: {{ $route.params.id }}</div>
     </div>
 </template>
 
@@ -14,18 +8,16 @@
 import axios from 'axios'
 
 export default {
-  name: 'Home',
+  name: 'Post',
   data () {
-    return {
-      posts: []
-    }
+    return {}
   },
   mounted () {
     this.getInfo()
   },
   methods: {
     getInfo () {
-      axios.get('http://localhost:3002/api/posts').then(this.getPosts)
+      // axios.get('http://localhost:3002/api/posts').then(this.getPosts)
     },
     getPosts (res) {
       if (res.status === 200) {
@@ -40,5 +32,5 @@ export default {
 }
 </script>
 
-<style>
+<style lang="stylus" scoped>
 </style>

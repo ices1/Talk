@@ -1,14 +1,16 @@
 <template>
   <div id="app">
-    <home-header></home-header>
-    <router-view/>
-    <home-footer></home-footer>
+    <div class="wrap">
+      <home-header></home-header>
+      <router-view/>
+      <home-footer></home-footer>
+    </div>
   </div>
 </template>
 
 <script>
-import HomeHeader from '@/pages/HomeHeader'
-import HomeFooter from '@/pages/HomeFooter'
+import HomeHeader from '@/pages/components/HomeHeader'
+import HomeFooter from '@/pages/components/HomeFooter'
 export default {
   name: 'App',
   components: {
@@ -18,11 +20,10 @@ export default {
 }
 </script>
 
-<style>
-#app {
-  font-family: 'Avenir', Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  color: #2c3e50;
-}
+<style lang="stylus">
+#app
+  max-width: 20rem
+  margin: 0 auto
+  .wrap
+    margin: 0 .2rem
 </style>
