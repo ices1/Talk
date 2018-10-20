@@ -20,3 +20,11 @@
 .float-right {
     float: right
 }
+.post, .comments {
+    color: #9E9E9E;
+    margin: 0.6rem auto 0.2rem;
+    padding: 0.4rem;
+    box-shadow: 0.01rem 0.05rem 0.2rem;
+    border-radius: 0.2rem;
+    overflow: hidden;
+  }

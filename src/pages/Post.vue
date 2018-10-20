@@ -4,8 +4,8 @@
           <h3 class="title"> {{ post.title }} </h3>
           <span>发帖人：</span>
             <router-link :to="'/user/' + post.userId">
-              <img class="avatar" :src="'http://localhost:3002/avatars/' + post.avatar" alt="">
-              <span class="post-username"> {{ post.username  }} </span>
+              <img v-if="flag" class="avatar" :src="'http://localhost:3002/avatars/' + post.avatar" alt="">
+              <span class="post-username"> {{ post.username }} </span>
             </router-link>
           <span class="float-right"> {{  postTime(post.timestamp) }} </span>
           <div class="content"> {{ post.content }} </div>
@@ -13,10 +13,10 @@
         <div class="comments">
           <h3>Comments:</h3>
           <ul>
-            <li v-for="(item, index) of comments" :key="item.id">
+            <li class='cms-wrap' v-for="(item, index) of comments" :key="item.id">
             <div class="user-info">
               <router-link :to="'/user/' + item.userId">
-                <img class="avatar" :src="'http://localhost:3002/avatars/' + item.avatar" alt="">
+                <img v-if="flag" class="avatar" :src="'http://localhost:3002/avatars/' + item.avatar" alt="">
                 <span class="post-username"> {{ item.username }} </span>
               </router-link>
               <span class="float-right"> {{ postTime(item.timestamp) }} </span>
@@ -43,6 +43,7 @@ export default {
     return {
       post: {},
       comments: [],
+      flag: false,
       id: this.$route.params.id
     }
   },
@@ -60,6 +61,7 @@ export default {
         // console.log(res.data.data.posts)
         this.post = res.data.data.post
         this.comments = res.data.data.comments
+        this.flag = true
       } else {
         console.log(res)
       }
@@ -72,15 +74,11 @@ export default {
 </script>
 
 <style lang="stylus" scoped>
-  .post, .comments
-    color: #9E9E9E
-    margin: .6rem auto 0
-    padding: .4rem
-    box-shadow: .01rem .05rem .2rem
   .post
     .title
       font-size: .5rem
       color: #333
+      margin-bottom: .2rem
     .content
       color: #333
       line-height: .4rem
@@ -91,7 +89,6 @@ export default {
     font-size: .5rem
   .cms-info
     margin: .1rem .2rem
-    border-bottom: .02rem solid #3333
   .cms-cnt
     margin: .4rem
     color: #333
@@ -100,4 +97,9 @@ export default {
     font-size: .5rem
     text-align: center
     padding: .6rem
+  .cms-wrap
+    border-bottom: .02rem solid #3333
+  .cms-wrap:last-child
+    border-bottom: none
+
 </style>

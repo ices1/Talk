@@ -54,15 +54,11 @@ export default {
 
 <style lang="stylus" scoped>
   @import '~styles/mixins.styl'
-  .post
-    margin: .6rem auto 0
-    padding: .4rem
-    box-shadow: .01rem .05rem .2rem
-    color: #9E9E9E
-    .title
-      font-size: .5rem
-      padding-bottom: .2rem
-      ellipsis()
-    .content
-      ellipsis()
+
+  .title
+    font-size: .5rem
+    padding-bottom: .2rem
+    ellipsis()
+  .content
+    ellipsis()
 </style>
