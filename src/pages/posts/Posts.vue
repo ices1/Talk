@@ -6,10 +6,10 @@
               <h3 class="title"> {{ item.title }} </h3>
               <p class="content"> {{ item.content }} </p>
             </router-link>
-            <div class="post-info">
+            <div class="user-info">
               <router-link :to="'user/' + item.userId">
-                <span class="post-username"> {{ item.username }} </span>
                 <img class="avatar" :src="'http://localhost:3002/avatars/' + item.avatar" alt="">
+                <span class="post-username"> {{ item.username }} </span>
               </router-link>
               <span class="float-right"> {{ idTime(item.timestamp) }}</span>
             </div>
@@ -65,21 +65,4 @@ export default {
       ellipsis()
     .content
       ellipsis()
-    .post-info
-      margin-top: .2rem
-      height: 1rem
-      line-height: 1rem
-      .avatar
-        width: 1rem
-        height: 1rem
-        border-radius: 25%
-        border: #9e9e9e66 .02rem solid;
-        transition: .2s
-        box-sizing: border-box
-      .avatar:hover
-        border-radius: 19% 63% 13% 69%
-      .post-username
-        color: #999
-      .float-right
-        float: right
 </style>
