@@ -2,7 +2,9 @@
   <div id="app">
     <div class="wrap">
       <home-header></home-header>
-      <router-view/>
+      <keep-alive>
+        <router-view/>
+      </keep-alive>
       <home-footer></home-footer>
     </div>
   </div>

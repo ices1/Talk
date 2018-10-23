@@ -2,10 +2,10 @@
   <div class="header">
     <ul>
       <li><router-link to="/">Home</router-link></li>
-      <li><router-link to="/">Login</router-link></li>
-      <li><router-link to="/">Resigiter</router-link></li>
-      <li><router-link to="/">Logout</router-link></li>
-      <li><router-link to="/">Push</router-link></li>
+      <li><router-link to="/login">Login</router-link></li>
+      <li><router-link to="/resigiter">Resigiter</router-link></li>
+      <li><router-link to="/logout">Logout</router-link></li>
+      <li><router-link to="/push">Push</router-link></li>
     </ul>
   </div>
 </template>
