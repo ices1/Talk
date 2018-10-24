@@ -1,9 +1,9 @@
 <template>
   <div id="app">
     <div class="wrap">
-      <home-header></home-header>
+      <home-header :isLogin='isLogin' ></home-header>
       <keep-alive>
-        <router-view/>
+        <router-view  :isLogin='isLogin' @loginStatus='showLogin' />
       </keep-alive>
       <home-footer></home-footer>
     </div>
@@ -18,6 +18,17 @@ export default {
   components: {
     HomeHeader,
     HomeFooter
+  },
+  data () {
+    return {
+      isLogin: {}
+    }
+  },
+  methods: {
+    showLogin (ops) {
+      this.isLogin = ops
+      console.log(this.isLogin)
+    }
   }
 }
 </script>

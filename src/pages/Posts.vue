@@ -30,6 +30,7 @@ export default {
     }
   },
   mounted () {
+    axios.defaults.withCredentials = true
     this.getInfo()
   },
   methods: {
@@ -38,7 +39,7 @@ export default {
     },
     getPosts (res) {
       if (res.status === 200) {
-        // console.log(res)
+        console.log(res)
         this.posts = res.data.data.posts
         console.log(res.data.data.posts)
       } else {
