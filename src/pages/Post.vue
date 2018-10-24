@@ -4,7 +4,7 @@
           <h3 class="title"> {{ post.title }} </h3>
           <span>发帖人：</span>
             <router-link :to="'/user/' + post.userId">
-              <img v-if="flag" class="avatar" :src="'http://localhost:3002/avatars/' + post.avatar" alt="">
+              <img v-if="flag" class="avatar" :src="'/api/avatars/' + post.avatar" alt="">
               <span class="post-username"> {{ post.username }} </span>
             </router-link>
           <span class="float-right"> {{  postTime(post.timestamp) }} </span>
@@ -16,7 +16,7 @@
             <li class='cms-wrap' v-for="(item, index) of comments" :key="item.id">
             <div class="user-info">
               <router-link :to="'/user/' + item.userId">
-                <img v-if="flag" class="avatar" :src="'http://localhost:3002/avatars/' + item.avatar" alt="">
+                <img v-if="flag" class="avatar" :src="'/api/avatars/' + item.avatar" alt="">
                 <span class="post-username"> {{ item.username }} </span>
               </router-link>
               <span class="float-right"> {{ postTime(item.timestamp) }} </span>
@@ -53,7 +53,7 @@ export default {
   },
   methods: {
     getInfo () {
-      axios.get('http://localhost:3002/api/post/' + this.id).then(this.getData)
+      axios.get('/api/post/' + this.id).then(this.getData)
     },
     getData (res) {
       if (res.status === 200) {

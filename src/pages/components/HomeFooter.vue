@@ -1,7 +1,7 @@
 <template>
-  <div class="p-2">
-    <p class="p-2 footer text-muted">copyright by
-      <a class="text-muted" href="https://github.com/ices1/Vue-BBS">ics1</a>
+  <div class="footer">
+    <p class="footer-cnt">copyright by
+      <a href="https://github.com/ices1/Vue-BBS">ics1</a>
     </p>
   </div>
 </template>
@@ -15,11 +15,11 @@ export default {
 }
 </script>
 
-<style scoped>
-.footer {
-    position: absolute;
+<style lang="stylus" scoped>
+  .footer
+    line-height: 1rem
     left: 50%;
     transform: translateX(-50%);
-    bottom: 0;
-}
+    position: absolute
+    bottom: -1rem
 </style>

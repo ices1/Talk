@@ -2,8 +2,8 @@
   <div id="app">
     <div class="wrap">
       <home-header :isLogin='isLogin' ></home-header>
-      <keep-alive>
-        <router-view  :isLogin='isLogin' @loginStatus='showLogin' />
+      <keep-alive include="Home">
+        <router-view :key="$route.fullPath" :isLogin='isLogin' @loginStatus='showLogin' />
       </keep-alive>
       <home-footer></home-footer>
     </div>
@@ -37,6 +37,8 @@ export default {
 #app
   max-width: 20rem
   margin: 0 auto
+  position: relative
+  min-height: 90vh
   .wrap
     margin: 0 .2rem
 </style>

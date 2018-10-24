@@ -2,7 +2,7 @@
     <div>
         <div class="user-banner">
             <div class=" ">
-                <img class="avatar  top-avatar" v-if="flag" :src="'http://localhost:3002/avatars/' + userinfo.avatar" alt="">
+                <img class="avatar  top-avatar" v-if="flag" :src="'/api/avatars/' + userinfo.avatar" alt="">
             </div>
             <div class="top-intr">
               <p class="top-username"> {{ userinfo.username }} </p>
@@ -35,6 +35,7 @@
                 <span class="float-right idTime"> {{ idTime(item.timestamp) }}</span>
             </li>
             </ul>
+            <p v-if='!comments.length' class="no-cms"> 从未发送过评论 </p>
         </div>
     </div>
 </template>
@@ -118,4 +119,9 @@ export default {
     border-bottom: none
   .cnt-title
     font-size: .4rem
+  .no-cms
+    color: #9E9E9E
+    font-size: .4rem
+    text-align: center
+    padding: .6rem
 </style>

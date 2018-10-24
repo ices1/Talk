@@ -1,14 +1,14 @@
 <template>
     <div>
         <ul>
-          <li class='post' v-for="(item, index) of posts" :key="index">
+          <li class='post' v-for="item of posts" :key="item.id">
             <router-link :to="'post/' + item.id">
               <h3 class="title"> {{ item.title }} </h3>
               <p class="content"> {{ item.content }} </p>
             </router-link>
             <div class="user-info">
               <router-link :to="'user/' + item.userId">
-                <img class="avatar" :src="'http://localhost:3002/avatars/' + item.avatar" alt="">
+                <img class="avatar" :src='"/api/avatars/" + item.avatar' alt="">
                 <span class="post-username"> {{ item.username }} </span>
               </router-link>
               <span class="float-right"> {{ idTime(item.timestamp) }}</span>
