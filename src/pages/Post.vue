@@ -61,6 +61,7 @@ export default {
         // console.log(res.data.data.posts)
         this.post = res.data.data.post
         this.comments = res.data.data.comments
+        this.$emit('loginStatus', res.data.data.user)
         this.flag = true
       } else {
         console.log(res)

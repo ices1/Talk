@@ -38,21 +38,24 @@ export default {
 
 <style lang="stylus" scoped>
   h1, h2
-    font-weight: normal
+    font-weight normal
   ul
-    list-style-type: none
-    padding: 0
-
+    list-style-type none
+    padding 0
   li
-    display: inline-block
-    margin: 0 10px
-
+    display inline-block
+    margin 0 10px
   a
-    color: #9e9e9e
+    color #9e9e9e
   .header-nav
-    height 1rem
-    line-height 1rem
-    font-size .4rem
+    height .9rem
+    line-height .9rem
+    font-size .36rem
+    background #333
+    padding 0 .2rem
+    margin 0 -.2rem
+    // box-shadow 5px 3px 11px 0px
+    box-shadow .1rem .05rem .05rem
     .nav-menu
       display inline-block
     .nav-user
