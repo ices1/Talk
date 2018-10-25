@@ -4,7 +4,7 @@
       <li><router-link to="/">Home</router-link></li>
       <li v-show="!showItem"><router-link to="/login">Login</router-link></li>
       <li v-show="!showItem"><router-link to="/register">Resigiter</router-link></li>
-      <li v-show="showItem"><router-link to="/logout">Logout</router-link></li>
+      <li v-show="showItem" @click="LogoutToHome"><router-link to="/logout">Logout</router-link></li>
       <li v-show="showItem"><router-link to="/push">Push</router-link></li>
     </ul>
     <div class="nav-user">
@@ -17,6 +17,8 @@
 </template>
 
 <script>
+import axios from 'axios'
+
 export default {
   name: 'HomeHeader',
   props: ['isLogin'],
@@ -25,12 +27,20 @@ export default {
   },
   computed: {
     showItem () {
-      console.log(this.isLogin, this.isLogin.username)
-      let show = this.isLogin.id
-
-      return show
-      // let show = this.bus.user
-      // return show === undefined
+      return this.isLogin && this.isLogin.id
+    }
+  },
+  methods: {
+    LogoutToHome () {
+      axios.get('/api/logout')
+        .then(res => {
+          console.log(res)
+        })
+        .catch(error => {
+          console.error(error)
+        })
+      this.$emit('loginStatus', {})
+      this.$router.push('/')
     }
   }
 }
