@@ -5,6 +5,8 @@ import Post from '@/pages/Post'
 import User from '@/pages/User'
 import Login from '@/pages/Login'
 import Register from '@/pages/Register'
+import Forgot from '@/pages/Forgot'
+import ResetPw from '@/pages/ResetPw'
 
 Vue.use(Router)
 
@@ -34,6 +36,16 @@ export default new Router({
       path: '/register',
       name: 'Register',
       component: Register
+    },
+    {
+      path: '/forgot',
+      name: 'Forgot',
+      component: Forgot
+    },
+    {
+      path: '/reset-password/:id',
+      name: 'ResetPW',
+      component: ResetPw
     }
   ]
 })

@@ -2,11 +2,11 @@
   <div id="app">
     <div class="wrap">
       <home-header :isLogin='isLogin' @loginStatus='showLogin'></home-header>
-      <keep-alive include="Home">
-        <transition name="slide-fade">
+      <transition name="slide-fade">
+        <keep-alive>
           <router-view :key="$route.fullPath" :isLogin='isLogin' @loginStatus='showLogin' />
-        </transition>
-      </keep-alive>
+        </keep-alive>
+      </transition>
       <home-footer></home-footer>
     </div>
   </div>

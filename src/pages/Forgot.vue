@@ -1,22 +1,14 @@
 <template>
     <div class="account-page">
-        <h3 class="page-title">登入</h3>
+        <h3 class="page-title">忘记密码</h3>
         <div>
             <div class="input-item">
                 <span class="input-title">用户名:</span>
                 <input @keyup.enter="login" class="input-cnt" type="text" name="username" v-model="username">
             </div>
             <div class="input-item">
-                <span class="input-title">密码:</span>
-                <input @keyup.enter="login" class="input-cnt" type="password" name="password" v-model="password">
-            </div>
-            <div class="input-item">
-                <span class="input-title">验证码:</span>
-                <input @keyup.enter="login" class="input-cnt input-captcha-cnt" type="text" name="captcha" v-model="captcha">
-                <img class="input-captcha" src="/api/captcha" alt="captcha">
-            </div>
-            <div class="input-item">
-                <router-link class="forgot" to="/forgot">忘记密码</router-link>
+                <span class="input-title">邮箱:</span>
+                <input @keyup.enter="login" class="input-cnt" type="text" name="email" v-model="email" placeholder="输入注册时邮箱，系统将发送邮件到该地址">
             </div>
             <div class="input-btn-wrap">
                 <button @click="login" class="input-btn">提交</button>
@@ -30,29 +22,22 @@ import axios from 'axios'
 import qs from 'qs'
 
 export default {
-  name: 'Login',
-  props: ['isLogin'],
+  name: 'Forgot',
   data () {
     return {
       username: '',
-      password: '',
-      captcha: ''
+      email: ''
     }
-  },
-  mounted () {
-    console.log(this.isLogin)
   },
   methods: {
     login () {
       let self = this
-      axios.post('/api/login', qs.stringify({
+      axios.post('/api/send-email', qs.stringify({
         username: this.username,
-        password: this.password,
-        captcha: this.captcha
+        email: this.email
       }))
         .then(function (res) {
-          // 触发变更登录状态
-          self.$emit('loginStatus', res.data)
+          console.log(res)
           self.$router.push('/')
         })
         .catch(function (error) {
