@@ -22,6 +22,7 @@
                         <span class="float-right idTime"> {{ idTime(item.timestamp) }}</span>
                     </li>
                 </ul>
+                <p v-if='!posts.length' class="no-cms"> 从未发送过任何主题 </p>
             </div>
         </div>
         <div class="comments">

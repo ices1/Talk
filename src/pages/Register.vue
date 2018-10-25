@@ -1,7 +1,7 @@
 <template>
     <div class="account-page">
         <h3 class="page-title">注册</h3>
-        <form action="/register" method="post" enctype='multipart/form-data'>
+        <form>
             <div class="input-item">
                 <span class="input-title">用户名:</span>
                 <input @keyup.enter="login" class="input-cnt" type="text" name="username" v-model="username">
@@ -15,11 +15,12 @@
                 <input @keyup.enter="login" class="input-cnt" type="text" name="email" v-model="email">
             </div>
             <div class="input-item">
-                <span class="input-title">验证码:</span>
-                <buttom @keyup.enter="login" class="input-cnt input-captcha-cnt" name="avatarFile" v-model="avatarFile">上传头像</buttom>
+                <span class="input-title">头像:</span>
+                <input class="input-file" type="file" name="avatar" id="avatarFileLoad" @change="getFile">
+                <label for="avatarFileLoad" class="input-file-label">上传头像</label>
             </div>
             <div class="input-btn-wrap">
-                <button @click="login" class="input-btn">提交</button>
+                <button @click="submitForm($event)" class="input-btn">提交</button>
             </div>
         </form>
     </div>
@@ -27,34 +28,45 @@
 
 <script>
 import axios from 'axios'
-import qs from 'qs'
 
 export default {
   name: 'Register',
-  props: ['isLogin'],
   data () {
     return {
       username: '',
       password: '',
-      emial: '',
-      avatarFile: ''
+      email: '',
+      avatar: ''
     }
   },
-  mounted () {
-    console.log(this.isLogin)
-  },
   methods: {
-    login () {
-      let self = this
-      axios.post('/api/register', qs.stringify({
-        username: this.username,
-        password: this.password,
-        emial: this.emial,
-        avatarFile: this.avatarFile
-      }))
-        .then(function (res) {
-          // 触发变更登录状态
-          self.$router.push('/')
+    getFile (event) {
+      this.avatar = event.target.files[0]
+      console.log(this.avatar)
+    },
+    submitForm (event) {
+      // 阻止默认事件
+      event.preventDefault()
+      // 表单内容统一 为FormData格式
+      let formData = new FormData()
+      formData.append('username', this.username)
+      formData.append('password', this.password)
+      formData.append('email', this.email)
+      formData.append('avatar', this.avatar)
+      let config = {
+        headers: {
+          'Content-Type': 'multipart/form-data'
+        }
+      }
+      // 上传
+      axios.post('/api/register', formData, config)
+        .then((res) => {
+          if (res.status === 200) {
+            console.log(res.data)
+            self.$router.push('/')
+          } else {
+            console.log(res.data)
+          }
         })
         .catch(function (error) {
           console.log('登入失败', error)
@@ -65,7 +77,12 @@ export default {
 </script>
 
 <style lang="stylus" scoped>
-@css {
-  color: #333
-}
+  .input-file
+    display none
+  .input-file-label
+    cursor pointer
+    padding .0 .6rem
+    border-radius .1rem
+    background-color #333a
+    color #fff
 </style>

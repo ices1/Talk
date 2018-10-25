@@ -3,7 +3,7 @@
     <ul class="nav-menu">
       <li><router-link to="/">Home</router-link></li>
       <li v-show="!showItem"><router-link to="/login">Login</router-link></li>
-      <li v-show="!showItem"><router-link to="/resigiter">Resigiter</router-link></li>
+      <li v-show="!showItem"><router-link to="/register">Resigiter</router-link></li>
       <li v-show="showItem"><router-link to="/logout">Logout</router-link></li>
       <li v-show="showItem"><router-link to="/push">Push</router-link></li>
     </ul>
