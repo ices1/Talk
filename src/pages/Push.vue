@@ -1,9 +1,9 @@
 <template>
     <div class="post-wrap">
         <h3 class="title"> 标题: </h3>
-        <input type="text" class="title-cnt" v-model="title">
+        <input type="text" class="title-cnt" @keyup.enter="pushCmt" v-model="title">
         <h3 class="title"> 内容: </h3>
-        <textarea class="post-cnt" name="content" v-model="content"></textarea>
+        <textarea class="post-cnt" name="content" @keyup.enter="pushCmt" v-model="content"></textarea>
         <button class="sub-btn" @click="pushCmt">发布评论</button>
     </div>
 </template>
@@ -36,8 +36,8 @@ export default {
         })
     },
     pushCmt () {
-      if (this.title.trim() === '' || this.content.trim() === '') {
-        alert('评论或标题不能为空')
+      if (this.title.trim() === '' || this.content.trim() === '' || this.title.trim().length > 20) {
+        alert('评论或标题不能为空或标题过长')
         return
       }
       // 提交帖子

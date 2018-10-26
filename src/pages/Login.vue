@@ -1,6 +1,7 @@
 <template>
     <div class="account-page">
         <h3 class="page-title">登入</h3>
+        <a class="test-acc" @click="testAcc()">启动测试账号</a>
         <div>
             <div class="input-item">
                 <span class="input-title">用户名:</span>
@@ -40,7 +41,7 @@ export default {
     }
   },
   mounted () {
-    console.log(this.isLogin)
+    // console.log(this.isLogin)
   },
   methods: {
     login () {
@@ -56,8 +57,14 @@ export default {
           self.$router.push('/')
         })
         .catch(function (error) {
-          console.log('登入失败', error)
+          alert(error.response.data.message)
+          // console.log('登入失败', error.response)
         })
+    },
+    // 是否启动测试账号
+    testAcc () {
+      this.username = 'Avatar_2'
+      this.password = '12345'
     }
   }
 }
@@ -67,4 +74,7 @@ export default {
 .forgot
   color #03a9f4
   text-decoration underline
+.test-acc
+  float right
+  color red
 </style>

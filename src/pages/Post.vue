@@ -37,7 +37,7 @@
         </div>
         <div class='add-comment'>
           <p v-if="!showCmtBtn" class="add-cmt-status"><router-link to="/login"> 请先 登录 后再评论... </router-link></p>
-          <textarea class="add-cmt-cnt" v-if="showCmtBtn" name="addComment" placeholder="请输入评论" v-model="addComment"></textarea>
+          <textarea class="add-cmt-cnt" v-if="showCmtBtn" @keyup.enter="pushCmt" name="addComment" placeholder="请输入评论" v-model="addComment"></textarea>
           <button class="add-cmt-btn" v-if="showCmtBtn" @click="pushCmt">发布评论</button>
         </div>
     </div>
@@ -84,7 +84,7 @@ export default {
         this.loginUser = res.data.data.user
         this.flag = true
       } else {
-        // console.log(res)
+        console.log(res)
       }
     },
     postTime (t) {
@@ -169,7 +169,7 @@ export default {
   .comments
     h3
       color: #9E9E9E
-      font-size: .5rem
+      font-size: .4rem
     .cms-info
       margin: .1rem .2rem
     .cms-cnt
@@ -178,9 +178,9 @@ export default {
       line-height .4rem
     .no-cms
       color: #9E9E9E
-      font-size: .5rem
+      font-size: .36rem
       text-align: center
-      padding: .6rem
+      padding: .5rem
     .cms-wrap
       border-bottom: .02rem solid #3333
     .cms-wrap:last-child
@@ -202,9 +202,9 @@ export default {
       .add-cmt-cnt
         padding 0.4rem
         box-sizing border-box
-        box-shadow 0.02rem 0.05rem 0.1rem
+        box-shadow 0.02rem 0.05rem 0.1rem #2196f3
         border-radius .2rem
-        color #2196f3
+        color #666
         width 100%
       .add-cmt-btn
         cursor pointer
