@@ -58,7 +58,7 @@ export default {
       flag: false,
       id: this.$route.params.id,
       addComment: '',
-      loginUserId: ''
+      loginUser: ''
     }
   },
   computed: {
@@ -67,7 +67,7 @@ export default {
     }
   },
   mounted () {
-    console.log(this.id)
+    // console.log(this.id)
     this.getInfo()
   },
   methods: {
@@ -76,15 +76,15 @@ export default {
     },
     getData (res) {
       if (res.status === 200) {
-        console.log(res)
+        // console.log(res)
         // console.log(res.data.data.posts)
         this.post = res.data.data.post
         this.comments = res.data.data.comments
         this.$emit('loginStatus', res.data.data.user)
-        this.loginUserId = res.data.data.user.id
+        this.loginUser = res.data.data.user
         this.flag = true
       } else {
-        console.log(res)
+        // console.log(res)
       }
     },
     postTime (t) {
@@ -101,23 +101,36 @@ export default {
         postid: this.post.id,
         content: this.addComment.trim()
       })).then((res) => {
-        console.log(res)
+        // avatar, content, id, postId, timestamp, userId, username:
+        // console.log(res)
+        // console.log(loginUser)
+        // console.log({
+        this.comments.push({
+          avatar: this.loginUser.avatar,
+          content: this.addComment.trim(),
+          id: res.data.commentId.id,
+          postId: this.post.id,
+          timestamp: Date.now(),
+          userId: this.loginUser.id,
+          username: this.loginUser.username
+        })
+        this.addComment = ''
       }).catch((err) => {
         console.error(err)
       })
     },
     // 显示删除按钮
     showDelBtn (userId) {
-      return this.loginUserId === userId
+      return this.loginUser.id === userId
     },
     // 判断是否删除评论，帖子
     deleteInfo (id, Category, index) {
       let c = confirm('确定要删除该条信息？')
       if (c) {
-        console.log('删除', Category, id)
+        // console.log('删除', Category, id)
         this.execDel(id, Category, index)
       } else {
-        console.log('不删除', Category, id)
+        // console.log('不删除', Category, id)
       }
     },
     // 执行删除评论，帖子
@@ -125,13 +138,13 @@ export default {
       let type = Category === 'post' ? 'post/' : 'comment/'
       axios.get('/api/delete-' + type + id)
         .then((res) => {
-          console.log(res)
+          // console.log(res)
           if (Category === 'post') {
             this.$router.push('/')
-            console.log('删除成功：', Category)
+            // console.log('删除成功：', Category, id)
           } else {
             this.comments.splice(index, 1)
-            console.log('删除成功：', Category, index)
+            // console.log('删除成功：', Category, id)
           }
         })
         .catch((err) => {
