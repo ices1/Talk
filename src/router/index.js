@@ -7,6 +7,7 @@ import Login from '@/pages/Login'
 import Register from '@/pages/Register'
 import Forgot from '@/pages/Forgot'
 import ResetPw from '@/pages/ResetPw'
+import Push from '@/pages/Push'
 
 Vue.use(Router)
 
@@ -46,6 +47,11 @@ export default new Router({
       path: '/reset-password/:id',
       name: 'ResetPW',
       component: ResetPw
+    },
+    {
+      path: '/push',
+      name: 'Push',
+      component: Push
     }
   ]
 })
