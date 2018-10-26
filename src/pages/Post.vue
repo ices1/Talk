@@ -30,21 +30,34 @@
           </ul>
           <p v-if='!comments.length' class="no-cms"> 当前还没有评论 </p>
         </div>
+        <div class='add-comment'>
+          <p v-if="!showCmtBtn" class="add-cmt-status"><router-link to="/login"> 请先 登录 后再评论... </router-link></p>
+          <textarea class="add-cmt-cnt" v-if="showCmtBtn" name="addComment" placeholder="请输入评论" v-model="addComment"></textarea>
+          <button class="add-cmt-btn" v-if="showCmtBtn" @click="pushCmt">发布评论</button>
+        </div>
     </div>
 </template>
 
 <script>
 import axios from 'axios'
 import {postTime} from '@/assets/js/common.js'
+import qs from 'qs'
 
 export default {
   name: 'Post',
+  props: ['isLogin'],
   data () {
     return {
       post: {},
       comments: [],
       flag: false,
-      id: this.$route.params.id
+      id: this.$route.params.id,
+      addComment: ''
+    }
+  },
+  computed: {
+    showCmtBtn () {
+      return this.isLogin && this.isLogin.id
     }
   },
   mounted () {
@@ -69,6 +82,22 @@ export default {
     },
     postTime (t) {
       return postTime(t)
+    },
+    pushCmt () {
+      if (this.addComment.trim() === '') {
+        alert('评论不能为空')
+        return
+      }
+      // 提交评论
+      axios.post('/api/add-comment', qs.stringify({
+        // userId: this.userId,
+        postid: this.post.id,
+        content: this.addComment.trim()
+      })).then((res) => {
+        console.log(res)
+      }).catch((err) => {
+        console.error(err)
+      })
     }
   }
 }
@@ -85,22 +114,52 @@ export default {
       line-height: .4rem
       text-indent: .4rem
       padding: .4rem 0
-  .comments h3
-    color: #9E9E9E
-    font-size: .5rem
-  .cms-info
-    margin: .1rem .2rem
-  .cms-cnt
-    margin: .4rem
-    color: #333
-  .no-cms
-    color: #9E9E9E
-    font-size: .5rem
-    text-align: center
-    padding: .6rem
-  .cms-wrap
-    border-bottom: .02rem solid #3333
-  .cms-wrap:last-child
-    border-bottom: none
-
+  .comments
+    h3
+      color: #9E9E9E
+      font-size: .5rem
+    .cms-info
+      margin: .1rem .2rem
+    .cms-cnt
+      margin: .4rem
+      color: #333
+      line-height .4rem
+    .no-cms
+      color: #9E9E9E
+      font-size: .5rem
+      text-align: center
+      padding: .6rem
+    .cms-wrap
+      border-bottom: .02rem solid #3333
+    .cms-wrap:last-child
+      border-bottom: none
+  .add-comment
+      color #9E9E9E
+      margin 1rem auto 0.2rem
+      display flow-root
+      // overflow hidden
+      .add-cmt-status
+        text-align center
+        box-shadow 0.02rem 0.05rem 0.2rem
+        border-radius .5rem
+        background-color #2196f3
+        padding 0.4rem
+        margin .6rem 0
+        a
+          color #fff
+      .add-cmt-cnt
+        padding 0.4rem
+        box-sizing border-box
+        box-shadow 0.02rem 0.05rem 0.1rem
+        border-radius .2rem
+        color #2196f3
+        width 100%
+      .add-cmt-btn
+        cursor pointer
+        background-color #2196f3
+        color #fff
+        padding .1rem .4rem
+        float right
+        border-radius .1rem
+        margin .4rem 0
 </style>
