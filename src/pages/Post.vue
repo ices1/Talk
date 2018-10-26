@@ -7,7 +7,11 @@
               <img v-if="flag" class="avatar" :src="'/api/avatars/' + post.avatar" alt="">
               <span class="post-username"> {{ post.username }} </span>
             </router-link>
-          <span class="float-right"> {{  postTime(post.timestamp) }} </span>
+          <div class="float-right post-time">
+
+            <span class="float-right"> {{  postTime(post.timestamp) }} </span>
+            <span class="float-right del-post" v-if="showDelBtn(post.userId)" @click="deleteInfo(post.id, 'post')"> 删除 </span>
+          </div>
           <div class="content"> {{ post.content }} </div>
         </div>
         <div class="comments">
@@ -24,6 +28,7 @@
             <div class="cms-info">
               <span>回帖：</span>
               <span class="float-right"> {{ '('+(index + 1) + 'L'+')'}} </span>
+              <span class="float-right del-cmt" v-if="showDelBtn(item.userId)" @click="deleteInfo(item.id, 'comment', index)"> 删除 </span>
               <p class="cms-cnt"> {{ item.content }} </p>
             </div>
             </li>
@@ -52,7 +57,8 @@ export default {
       comments: [],
       flag: false,
       id: this.$route.params.id,
-      addComment: ''
+      addComment: '',
+      loginUserId: ''
     }
   },
   computed: {
@@ -75,6 +81,7 @@ export default {
         this.post = res.data.data.post
         this.comments = res.data.data.comments
         this.$emit('loginStatus', res.data.data.user)
+        this.loginUserId = res.data.data.user.id
         this.flag = true
       } else {
         console.log(res)
@@ -98,6 +105,38 @@ export default {
       }).catch((err) => {
         console.error(err)
       })
+    },
+    // 显示删除按钮
+    showDelBtn (userId) {
+      return this.loginUserId === userId
+    },
+    // 判断是否删除评论，帖子
+    deleteInfo (id, Category, index) {
+      let c = confirm('确定要删除该条信息？')
+      if (c) {
+        console.log('删除', Category, id)
+        this.execDel(id, Category, index)
+      } else {
+        console.log('不删除', Category, id)
+      }
+    },
+    // 执行删除评论，帖子
+    execDel (id, Category, index) {
+      let type = Category === 'post' ? 'post/' : 'comment/'
+      axios.get('/api/delete-' + type + id)
+        .then((res) => {
+          console.log(res)
+          if (Category === 'post') {
+            this.$router.push('/')
+            console.log('删除成功：', Category)
+          } else {
+            this.comments.splice(index, 1)
+            console.log('删除成功：', Category, index)
+          }
+        })
+        .catch((err) => {
+          console.error(err)
+        })
     }
   }
 }
@@ -162,4 +201,15 @@ export default {
         float right
         border-radius .1rem
         margin .4rem 0
+  .post-time
+    position relative
+  .del-cmt, .del-post
+    padding 0 .4rem
+    cursor pointer
+    color #2196f3
+    text-decoration underline
+  .del-post
+    position absolute
+    right 0rem
+    top .5rem
 </style>
