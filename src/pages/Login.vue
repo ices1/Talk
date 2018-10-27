@@ -14,7 +14,7 @@
             <div class="input-item">
                 <span class="input-title">验证码:</span>
                 <input @keyup.enter="login" class="input-cnt input-captcha-cnt" type="text" name="captcha" v-model="captcha">
-                <img class="input-captcha" src="/api/captcha" alt="captcha">
+                <img class="input-captcha" @click="changeCap" ref="captcha" src="/api/captcha" alt="captcha">
             </div>
             <div class="input-item">
                 <router-link class="forgot" to="/forgot">忘记密码</router-link>
@@ -40,6 +40,9 @@ export default {
       captcha: ''
     }
   },
+  mounted () {
+    this.changeCap()
+  },
   methods: {
     login () {
       let self = this
@@ -62,6 +65,10 @@ export default {
     testAcc () {
       this.username = 'Avatar_2'
       this.password = '12345'
+    },
+    // 更换新验证码
+    changeCap () {
+      this.$refs.captcha.src = '/api/captcha?' + Date.now()
     }
   }
 }

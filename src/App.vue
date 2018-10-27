@@ -3,7 +3,7 @@
     <div class="wrap">
       <home-header :isLogin='isLogin' @loginStatus='showLogin'></home-header>
       <transition name="slide-fade">
-        <keep-alive>
+        <keep-alive exclude="Login">
           <router-view class="page-cnt" :key="$route.fullPath" :isLogin='isLogin' @loginStatus='showLogin' />
         </keep-alive>
       </transition>
