@@ -18,8 +18,13 @@ export default {
 <style lang="stylus" scoped>
   .footer
     line-height: 1rem
-    left: 50%;
-    transform: translateX(-50%);
-    position: absolute
-    bottom: -1rem
+    // left: 50%;
+    // transform: translateX(-50%);
+    // position: absolute
+    // bottom: -1rem
+    margin .6rem 0
+    text-align center
+    color #6666
+    a
+      color #999
 </style>

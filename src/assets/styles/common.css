@@ -32,7 +32,7 @@
     position: relative;
     max-width: 20rem;
     margin: 0 5%;
-    height: 80vh;
+    /* height: 80vh; */
 }
 .page-title {
     margin-top: .6rem;
@@ -91,7 +91,7 @@
     }
 }
 .input-btn {
-    position: absolute;
+    /* position: absolute; */
     bottom: 0;
     cursor: pointer;
     font-size: .5rem;
