@@ -62,7 +62,7 @@ export default {
   },
   methods: {
     getInfo () {
-      axios.get('http://localhost:3002/api/user/' + this.id).then(this.getData)
+      axios.get('/api/user/' + this.id).then(this.getData)
     },
     getData (res) {
       if (res.status === 200) {

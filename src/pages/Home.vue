@@ -36,7 +36,7 @@ export default {
   },
   methods: {
     getInfo () {
-      axios.get('http://localhost:3002/api/posts').then(this.getPosts)
+      axios.get('/api/posts').then(this.getPosts)
     },
     getPosts (res) {
       if (res.status === 200) {
