@@ -29,7 +29,7 @@ export default {
   methods: {
     showLogin (ops) {
       this.isLogin = ops
-      console.log(this.isLogin)
+      // console.log(this.isLogin)
     }
   }
 }

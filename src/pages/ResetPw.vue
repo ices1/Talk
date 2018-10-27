@@ -37,7 +37,7 @@ export default {
       this.username = decodeURI(this.$route.path.split('username=')[1])
       axios.get('/api/' + this.$route.path)
         .then((res) => {
-          console.log(res)
+          // console.log(res)
         })
         .catch((error) => {
           console.log(error)
@@ -54,7 +54,7 @@ export default {
         password: this.password.trim()
       }))
         .then(function (res) {
-          console.log(res)
+          // console.log(res)
           alert('密码修改成功')
           self.$router.push('/')
         })

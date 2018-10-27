@@ -66,7 +66,7 @@ export default {
     },
     getData (res) {
       if (res.status === 200) {
-        console.log(res)
+        // console.log(res)
         this.posts = res.data.data.posts
         this.comments = res.data.data.comments
         this.userinfo = res.data.data.userinfo

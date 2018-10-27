@@ -77,7 +77,6 @@ export default {
     getData (res) {
       if (res.status === 200) {
         // console.log(res)
-        // console.log(res.data.data.posts)
         this.post = res.data.data.post
         this.comments = res.data.data.comments
         this.$emit('loginStatus', res.data.data.user)
@@ -102,9 +101,6 @@ export default {
         content: this.addComment.trim()
       })).then((res) => {
         // avatar, content, id, postId, timestamp, userId, username:
-        // console.log(res)
-        // console.log(loginUser)
-        // console.log({
         this.comments.push({
           avatar: this.loginUser.avatar,
           content: this.addComment.trim(),
@@ -116,12 +112,13 @@ export default {
         })
         this.addComment = ''
       }).catch((err) => {
-        console.error(err)
+        alert(err.response.data.message)
       })
     },
     // 显示删除按钮
     showDelBtn (userId) {
       // 先判断是否登录，再判断登录人是否为帖子本人
+      console.log(this.loginUser)
       return this.loginUser && this.loginUser.id === userId
     },
     // 判断是否删除评论，帖子
@@ -149,7 +146,7 @@ export default {
           }
         })
         .catch((err) => {
-          console.error(err)
+          alert(err.response.data.message)
         })
     }
   }

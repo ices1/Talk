@@ -40,11 +40,11 @@ export default {
     },
     getPosts (res) {
       if (res.status === 200) {
-        console.log(res)
+        // console.log(res)
         this.posts = res.data.data.posts
         this.$emit('loginStatus', res.data.data.user)
-        console.log(this.isLogin)
-        console.log(res.data.data.posts)
+        // console.log(this.isLogin)
+        // console.log(res.data.data.posts)
       } else {
         console.log(res)
       }

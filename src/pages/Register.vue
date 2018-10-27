@@ -77,7 +77,8 @@ export default {
       let self = this
       axios.post('/api/register', formData, config)
         .then((res) => {
-          console.log(res.data)
+          // console.log(res.data)
+          alert('注册成功')
           self.$router.push('/login')
         })
         .catch((error) => {

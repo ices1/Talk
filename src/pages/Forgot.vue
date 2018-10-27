@@ -36,12 +36,12 @@ export default {
         username: this.username,
         email: this.email
       }))
-        .then(function (res) {
-          console.log(res)
+        .then((res) => {
+          alert(res.data.message)
           self.$router.push('/')
         })
-        .catch(function (error) {
-          console.log('登入失败', error)
+        .catch((error) => {
+          alert(error.response.data.message)
         })
     }
   }

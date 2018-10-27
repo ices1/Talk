@@ -28,11 +28,11 @@ export default {
     getInfo () {
       axios.get('/api/add-post')
         .then((res) => {
-          console.log(res)
+          // console.log(res)
           this.$emit('loginStatus', res.data.user)
         })
         .catch((err) => {
-          console.error(err)
+          console.log(err)
         })
     },
     pushCmt () {
@@ -48,10 +48,10 @@ export default {
         title: this.title,
         content: this.content.trim()
       })).then((res) => {
-        console.log(res)
+        // console.log(res)
         this.$router.push('/post/' + res.data.post.id)
       }).catch((err) => {
-        console.error(err)
+        alert(err.response.data.message)
       })
     }
   }

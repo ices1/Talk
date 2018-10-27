@@ -34,10 +34,10 @@ export default {
     LogoutToHome () {
       axios.get('/api/logout')
         .then(res => {
-          console.log(res)
+          console.log(res.data.message)
         })
         .catch(error => {
-          console.error(error)
+          console.log(error)
         })
       this.$emit('loginStatus', {})
       this.$router.push('/')
