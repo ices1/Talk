@@ -121,7 +121,8 @@ export default {
     },
     // 显示删除按钮
     showDelBtn (userId) {
-      return this.loginUser.id === userId
+      // 先判断是否登录，再判断登录人是否为帖子本人
+      return this.loginUser && this.loginUser.id === userId
     },
     // 判断是否删除评论，帖子
     deleteInfo (id, Category, index) {
