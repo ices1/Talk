@@ -40,9 +40,6 @@ export default {
       captcha: ''
     }
   },
-  mounted () {
-    // console.log(this.isLogin)
-  },
   methods: {
     login () {
       let self = this

@@ -24,7 +24,6 @@ import {indexTime} from '@/assets/js/common.js'
 
 export default {
   name: 'Home',
-  props: ['isLogin'],
   data () {
     return {
       posts: []
@@ -42,9 +41,6 @@ export default {
       if (res.status === 200) {
         // console.log(res)
         this.posts = res.data.data.posts
-        this.$emit('loginStatus', res.data.data.user)
-        // console.log(this.isLogin)
-        // console.log(res.data.data.posts)
       } else {
         console.log(res)
       }

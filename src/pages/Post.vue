@@ -79,7 +79,7 @@ export default {
         // console.log(res)
         this.post = res.data.data.post
         this.comments = res.data.data.comments
-        this.$emit('loginStatus', res.data.data.user)
+        // this.$emit('loginStatus', res.data.data.user)
         this.loginUser = res.data.data.user
         this.flag = true
       } else {
@@ -118,7 +118,7 @@ export default {
     // 显示删除按钮
     showDelBtn (userId) {
       // 先判断是否登录，再判断登录人是否为帖子本人
-      console.log(this.loginUser)
+      // console.log(this.loginUser)
       return this.loginUser && this.loginUser.id === userId
     },
     // 判断是否删除评论，帖子

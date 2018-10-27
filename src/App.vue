@@ -15,6 +15,8 @@
 <script>
 import HomeHeader from '@/pages/components/HomeHeader'
 import HomeFooter from '@/pages/components/HomeFooter'
+import axios from 'axios'
+
 export default {
   name: 'App',
   components: {
@@ -26,10 +28,22 @@ export default {
       isLogin: {}
     }
   },
+  mounted () {
+    axios.defaults.withCredentials = true
+    this.getUserInfo()
+  },
   methods: {
     showLogin (ops) {
       this.isLogin = ops
-      // console.log(this.isLogin)
+    },
+    getUserInfo () {
+      axios.get('/api/isLogin')
+        .then((res) => {
+          this.isLogin = res.data.user
+        })
+        .catch((err) => {
+          console.log(err)
+        })
     }
   }
 }

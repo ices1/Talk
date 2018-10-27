@@ -57,7 +57,7 @@ export default {
     }
   },
   mounted () {
-    axios.defaults.withCredentials = true
+    // axios.defaults.withCredentials = true
     this.getInfo()
   },
   methods: {
@@ -70,7 +70,6 @@ export default {
         this.posts = res.data.data.posts
         this.comments = res.data.data.comments
         this.userinfo = res.data.data.userinfo
-        this.$emit('loginStatus', res.data.data.user)
         this.flag = true
       } else {
         console.log(res)

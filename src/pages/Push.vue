@@ -20,21 +20,7 @@ export default {
       content: ''
     }
   },
-  mounted () {
-    axios.defaults.withCredentials = true
-    this.getInfo()
-  },
   methods: {
-    getInfo () {
-      axios.get('/api/add-post')
-        .then((res) => {
-          // console.log(res)
-          this.$emit('loginStatus', res.data.user)
-        })
-        .catch((err) => {
-          console.log(err)
-        })
-    },
     pushCmt () {
       if (this.title.trim() === '' || this.content.trim() === '' || this.title.trim().length > 20) {
         alert('评论或标题不能为空或标题过长')
@@ -73,7 +59,7 @@ export default {
     .title-cnt, .post-cnt
       box-shadow 0.02rem 0.05rem 0.1rem
       border-radius .2rem
-      color #9E9E9E
+      color #333
       margin .6rem 0
       height .6rem
       padding 0 .2rem
